@@ -36,7 +36,7 @@ def givens_rotation(A):
 
     return (Q, R)
 
-def readFromText(myFile):
+def readFromTextA(myFile):
     A=[]
     with open(myFile) as file:
         for line in file:
@@ -45,4 +45,8 @@ def readFromText(myFile):
     return A	
 
 
-
+def readFromTextB(myFile):
+    b = []
+    with open(myFile) as file:
+        for line in file:
+            b.append([float(x) for x in line.replace('\n', '').split(" ")])
