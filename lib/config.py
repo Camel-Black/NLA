@@ -11,7 +11,7 @@ def computation_given_entries(a, b):
 def givens_rotation(A):
     
     (num_rows, num_cols) = np.shape(A)
-
+    
     # Initialize orthogonal matrix Q and upper triangular matrix R.
     Q = np.identity(num_rows)
     R = np.copy(A)
