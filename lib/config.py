@@ -1,5 +1,5 @@
 import numpy as np
-from math import hypot
+from math import hypot,sqrt
 
 def computation_given_entries(a, b):
     r = hypot(a, b)
@@ -37,14 +37,15 @@ def givens_rotation(A):
     return (Q, R)
 
 def readFromText(myFile):
-    with open(myFiles) as file:
-    for line in file:
-        a = list(filter(lambda x: x != '', [x for x in line.replace('\n', '').split(" ")]))
-        A.append(list(map(lambda x : float(x), a)))
+    A=[]
+    with open(myFile) as file:
+        for line in file:
+            a = list(filter(lambda x: x != '', [x for x in line.replace('\n', '').split(" ")]))
+            A.append(list(map(lambda x : float(x), a)))
     return A	
 
 
-def householder_reflection(A):
+
 
 def cmp(a, b):
     return (a > b) - (a < b) 

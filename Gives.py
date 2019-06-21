@@ -5,6 +5,6 @@ import config as func
 
 
 a = func.readFromText("A.txt")
-(Q,R)= func.givens_rotation(a)
+print(type(a))
 
-print((Q,R))
+
