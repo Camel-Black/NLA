@@ -2,9 +2,9 @@ import numpy as np
 from math import hypot,sqrt
 
 def computation_given_entries(a, b):
-    r = hypot(a, b)
+    r = hypot(a, b) 
     c = a/r
-    s = -b/r
+    s = -b/r #sin = -b/sqrt(a,b)
 
     return (c, s)
 
@@ -43,61 +43,6 @@ def readFromText(myFile):
             a = list(filter(lambda x: x != '', [x for x in line.replace('\n', '').split(" ")]))
             A.append(list(map(lambda x : float(x), a)))
     return A	
-
-
-
-
-def cmp(a, b):
-    return (a > b) - (a < b) 
-
-def mult_matrix(M, N):                                                               
-    tuple_N = zip(*N)                                                                                                                                                                                    
-    return [[sum(el_m * el_n for el_m, el_n in zip(row_m, col_n)) for col_n in N] for row_m in M]
-
-def trans_matrix(M):
-    n = len(M)
-    return [[ M[i][j] for i in range(n)] for j in range(n)]
-
-def norm(x):
-    return sqrt(sum([x_i**2 for x_i in x]))
-
-def Q_i(Q_min, i, j, k):
-    if i < k or j < k:
-        return float(i == j)
-    else:
-        return Q_min[i-k][j-k]
-
-def householder(A):
-    n = len(A)
-    R = A
-    Q = [[0.0] * n for i in range(n)]
-
-    for k in range(n-1):                                                                    
-        I = [[float(i == j) for i in range(n)] for j in range(n)]
-
-        x = [row[k] for row in R[k:]]
-        e = [row[k] for row in I[k:]]
-        alpha = -cmp(x[0],0) * norm(x) # alpha = -sign(x1) * norm(x)
-
-        u = list(map(lambda p,q: p + alpha * q, x, e))
-        norm_u = norm(u)
-        v = list(map(lambda p: p/norm_u, u))
-
-        Q_min = [ [float(i==j) - 2.0 * v[i] * v[j] for i in range(n-k)] for j in range(n-k) ]
-        Q_t = [[ Q_i(Q_min,i,j,k) for i in range(n)] for j in range(n)]
-
-        if k == 0:
-            Q = Q_t
-            R = mult_matrix(Q_t,A)
-        else:
-            Q = mult_matrix(Q_t,Q)
-            R = mult_matrix(Q_t,R)
-
-    return trans_matrix(Q), R
-
-
-
-
 
 
 
