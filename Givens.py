@@ -4,14 +4,15 @@ import config as func
 import numpy as np
 
 
-a = func.readFromText("A.txt")
+a = func.readFromTextA("A.txt")
 a=np.asarray(a)
-print(a)
-# print(type(b))
-(Q,R)= func.givens_rotation(a)
 
-print((Q,R))
-# a= np.array([[1 , 3 , 7],
-#             [3 , 5 , 5]])
-# (q,r) = np.shape(a)
-# print(q,r)
+Q,R= func.givens_rotation(a)
+
+
+b = func.readFromTextB("b.txt")
+
+b = np.asarray(b)
+p = np.dot(Q.T, b)
+print("x : \n")
+print(np.dot(np.linalg.inv(R), p))
