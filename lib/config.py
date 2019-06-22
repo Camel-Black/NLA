@@ -49,13 +49,14 @@ def readFromTextB(myFile):
         for line in file:
             b.append([float(x) for x in line.replace('\n', '').split(" ")])
     return b
-def linearsolver(A,b):
+    #------------------------------#
+def maq(A,b):
   n = len(A)
   M = A
 
   i = 0
   for x in M:
-   x.append(b[i])
+   x.append(b[i][0])
    i += 1
 
   for k in range(n):
@@ -78,4 +79,4 @@ def linearsolver(A,b):
     for j in range(i+1,n):
         z = z  + float(M[i][j])*x[j]
     x[i] = float(M[i][n] - z)/M[i][i]
-  print(x)
+  return x
