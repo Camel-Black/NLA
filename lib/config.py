@@ -80,3 +80,32 @@ def maq(A,b):
         z = z  + float(M[i][j])*x[j]
     x[i] = float(M[i][n] - z)/M[i][i]
   return x
+
+
+def LUP(A,b):
+    n = len(A)
+    A, b = np.asarray(A,dtype=np.float64),np.asarray(b,dtype=np.float64)
+    L = np.asarray(np.identity(n))
+    U = np.copy(A)
+    P = np.identity(n)
+
+    permutation = abs(U[:,0]).argsort()[::-1]
+    U=U[permutation]
+    P=P[permutation]
+
+    for k in range(n):                          #for each column of A in Ab
+
+        #Forward Elimination - Subtracting rows
+        for j in range(k+1,n):                      #for each row under the diagonal of the kth column
+            q = float(U[j][k]) / U[k][k]              #calculate the ratio to the value in the main diagonal
+
+            L[j][k] = q
+
+            for m in range(k, n):                     #for each each column in a Row j
+                # Ab[j][m] -=  q * Ab[k][m]                   #calculate Rj - q*Rk.  This will result in all zeros under the main diagonal
+                if m<len(U):
+                    U[j][m] -= q * U[k][m]
+    x = np.zeros(n)
+
+    U = np.triu(U)
+    return (np.asmatrix(L), np.asmatrix(U),np.asmatrix(P))
