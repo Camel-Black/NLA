@@ -5,9 +5,9 @@ import numpy as np
 
 
 a = func.readFromTextA("A.txt")
-a=np.asarray(a)
+a = np.asarray(a)
 
-Q,R= func.givens_rotation(a)
+Q,R = func.givens_rotation(a)
 
 
 b = func.readFromTextB("b.txt")

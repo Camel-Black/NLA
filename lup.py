@@ -67,13 +67,13 @@ pprint(y)
 #Ux=y
 x = np.zeros(n)
 Uy = np.asarray(np.c_[U, np.asarray(y)],dtype=np.float64)
-#Backwards Substitution - Solve for one variable and substite that back in to solve for another
-x[n-1] =float(Uy[n-1][n])/Uy[n-1][n-1]      #simply solve the last row, since there should be only one unknown
-for i in range (n-1,-1,-1):                 #start,stop, step - starting from the second last row work back up the rows
-    z = 0.0                                     #let z=0 or reset to 0
-    for j in range(i+1,n):                      #for each column in a Row j
-        z = z  + float(Uy[i][j])*x[j]               #substitute answers from below(stored in x) into the equation of the current row
-    x[i] = float(Uy[i][n] - z) / Uy[i][i]       #solve for this row, where there should now be only one unknown
+
+x[n-1] =float(Uy[n-1][n])/Uy[n-1][n-1]      
+for i in range (n-1,-1,-1):                 
+    z = 0.0                                     
+    for j in range(i+1,n):                      
+        z = z  + float(Uy[i][j])*x[j]           
+    x[i] = float(Uy[i][n] - z) / Uy[i][i]       
 x = np.asmatrix(x).T
 print('x: ')
 pprint(np.asarray(x))

@@ -58,9 +58,10 @@ def maq(A,b):
   for x in M:
    x.append(b[i][0])
    i += 1
-
+  
   for k in range(n):
-   for i in range(k,n):
+   for i in range(k,n): 
+     
      if abs(M[i][k]) > abs(M[k][k]):
         M[k], M[i] = M[i],M[k]
      else:
@@ -90,6 +91,7 @@ def LUP(A,b):
     P = np.identity(n)
 
     permutation = abs(U[:,0]).argsort()[::-1]
+    print(permutation)
     U=U[permutation]
     P=P[permutation]
 
