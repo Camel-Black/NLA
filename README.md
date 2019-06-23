@@ -13,5 +13,5 @@ Install numpy :
  ```
  Then run each file with python3 like this:
 ```bash
-python3 givens.py
+python3 Givens.py
 ```
